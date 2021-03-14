@@ -1,0 +1,2 @@
+/usr/bin/ar qc libIR-Controller-Utils.a  CMakeFiles/IR-Controller-Utils.dir/src/utils/utils.cpp.o
+/usr/bin/ranlib libIR-Controller-Utils.a

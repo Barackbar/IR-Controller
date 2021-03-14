@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jdss/ir-controller_ws/IR-Controller/src/main.cpp
+cstdio
+-
+cstdlib
+-
+iostream
+-
+config.hh
+/home/jdss/ir-controller_ws/IR-Controller/src/config.hh
+utils/utils.hh
+/home/jdss/ir-controller_ws/IR-Controller/src/utils/utils.hh
+
+config.hh
+
+include/utils/utils.hh
+
