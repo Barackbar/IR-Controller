@@ -13,12 +13,12 @@ cstdlib
 -
 iostream
 -
-config.hh
-/home/jdss/ir-controller_ws/IR-Controller/src/config.hh
+config/config.hh
+/home/jdss/ir-controller_ws/IR-Controller/src/config/config.hh
 utils/utils.hh
 /home/jdss/ir-controller_ws/IR-Controller/src/utils/utils.hh
 
-config.hh
+include/config/config.hh
 
 include/utils/utils.hh
 

@@ -38,7 +38,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "config.hh"
+  "include/config/config.hh"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

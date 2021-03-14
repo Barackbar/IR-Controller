@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "config.hh"
+#include "config/config.hh"
 #include "utils/utils.hh"
 
 int main(int argc, char** argv)

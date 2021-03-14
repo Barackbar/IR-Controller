@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(IR_Controller VERSION 0.1)
 
-configure_file(config/config.hh.in config.hh)
+configure_file(config/config.hh.in include/config/config.hh)
 
 # Add Utils library to eventually link the executable against
 add_library(${PROJECT_NAME}-Utils
