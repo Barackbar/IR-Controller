@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/IR_Controller.dir/src/main.cpp.o  -o IR_Controller libIR_Controller-Utils.a 
