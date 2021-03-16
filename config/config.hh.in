@@ -1,0 +1,8 @@
+
+#ifndef __IR_CONTROLLER_CONFIG_HH__
+#define __IR_CONTROLLER_CONFIG_HH__
+
+#define IR_Controller_VERSION_MAJOR @IR_Controller_VERSION_MAJOR@
+#define IR_Controller_VERSION_MINOR @IR_Controller_VERSION_MINOR@
+
+#endif

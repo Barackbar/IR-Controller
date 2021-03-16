@@ -1,0 +1,4 @@
+/home/jdss/ir-controller_ws/IR-Controller/CMakeFiles/edit_cache.dir
+/home/jdss/ir-controller_ws/IR-Controller/CMakeFiles/IR_Controller-Utils.dir
+/home/jdss/ir-controller_ws/IR-Controller/CMakeFiles/rebuild_cache.dir
+/home/jdss/ir-controller_ws/IR-Controller/CMakeFiles/IR_Controller.out.dir
