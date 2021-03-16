@@ -13,5 +13,9 @@ int main(int argc, char** argv)
   
   ir_controller::UtilTest();
 
+  std::cout << "DeviceStatus(/dev/lirc0)" << ir_controller::DeviceStatus(std::string("/dev/lirc0")) << std::endl;
+  std::cout << "DeviceStatus(/dev/lirc1)" << ir_controller::DeviceStatus(std::string("/dev/lirc1")) << std::endl;
+  std::cout << "DeviceStatus(/dev/notadevice)" << ir_controller::DeviceStatus(std::string("/dev/notadevice")) << std::endl;
+
   return 0;
 }
