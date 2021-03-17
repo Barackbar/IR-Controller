@@ -9,7 +9,8 @@ configure_file(config/config.hh.in include/config/config.hh)
 
 # Add Utils library to eventually link the executable against
 add_library(${PROJECT_NAME}-Utils
-            src/utils/utils.cpp)
+            src/utils/utils.cpp
+            src/utils/keyboard_youtube.cpp)
 # Point the Utils library to its corresponding include directory
 target_include_directories(${PROJECT_NAME}-Utils PUBLIC
                            include/utils)
