@@ -5,6 +5,7 @@
 #include "keyboard.hh"
 
 #include <string>
+#include <utility>
 
 namespace ir_controller
 {
@@ -79,7 +80,18 @@ class Keyboard_Youtube : public Keyboard
       m_bottomLayout.push_back(Key("clear",1,0));
       m_bottomLayout.push_back(Key("search",2,0));
 
-      m_lastBottomTrans = "";
+      m_letterDimXY.first  = 7;
+      m_letterDimXY.second = 4;
+
+      m_specialDimXY.first  = 7;
+      m_specialDimXY.second = 3;
+
+      m_sideDimXY.first  = 1;
+      m_sideDimXY.second = 2;
+
+      m_bottomDimXY.first  = 3;
+      m_bottomDimXY.second = 1;
+
       m_letterNotSpecial = true;
   };
   ~Keyboard_Youtube()
@@ -88,12 +100,33 @@ class Keyboard_Youtube : public Keyboard
   void ClearState();
  protected:
  private:
-  std::vector<Key> m_letterLayout;
-  std::vector<Key> m_specialLayout;
-  std::vector<Key> m_sideLayout;
-  std::vector<Key> m_bottomLayout;
+  enum ButtonSet
+  {
+    none,
+    letter,
+    special,
+    side,
+    bottom
+  };
 
-  std::string m_lastBottomTrans;
+  std::pair<ButtonSet,Key> GetLoc(std::string button);
+  Key GetKeyAtXY(ButtonSet set, unsigned int x, unsigned int y);
+  std::vector<char> GetPathWithXY(
+    unsigned int srcX,
+    unsigned int srcY,
+    unsigned int dstX,
+    unsigned int dstY);
+
+  std::vector<Key> m_letterLayout;
+  std::pair<unsigned int,unsigned int> m_letterDimXY;
+  std::vector<Key> m_specialLayout;
+  std::pair<unsigned int,unsigned int> m_specialDimXY;
+  std::vector<Key> m_sideLayout;
+  std::pair<unsigned int,unsigned int> m_sideDimXY;
+  std::vector<Key> m_bottomLayout;
+  std::pair<unsigned int,unsigned int> m_bottomDimXY;
+
+  // Whether or not we're currently in the letter or special set.
   bool m_letterNotSpecial;
 };
 

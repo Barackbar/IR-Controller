@@ -25,14 +25,20 @@ class Keyboard
    *  reach the destination, where up = u, down = d, left = l, right = r,
    *  enter = e.
    */
-  virtual std::vector<char> GetPath(std::string src, std::string dst);
+  virtual std::vector<char> GetPath(std::string src, std::string dst) = 0;
   /* ClearState
    * Clears out any state information that may persist between calls.
    */
-  virtual void ClearState();
+  virtual void ClearState() = 0;
  protected:
   struct Key
   {
+    Key()
+    {
+      val = "";
+      x = 0;
+      y = 0;
+    };
     Key(std::string val_in, unsigned int x_in, unsigned int y_in)
     {
       val = val_in;

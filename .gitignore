@@ -2,10 +2,7 @@
 *.swp
 
 # CMake Stuff
-CMakeFiles/
-CMakeCache.txt
-Makefile
-cmake_install.cmake
+build/
 
 # Prerequisites
 *.d
