@@ -35,9 +35,6 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
   std::pair<Keyboard_Youtube::ButtonSet,Keyboard::Key> dstLoc
      = this->GetLoc(dst);
 
-//  printf("src:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",srcLoc.first,srcLoc.second.val.c_str(),srcLoc.second.x,srcLoc.second.y);
-//  printf("dst:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",dstLoc.first,dstLoc.second.val.c_str(),dstLoc.second.x,dstLoc.second.y);
-
   std::vector<char> tempVec;
 
   // If src and dst are in the same set
@@ -47,6 +44,21 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
                                dstLoc.second.x, dstLoc.second.y);
     return outVec;
   }
+
+  // Set whether we're in letter or special based on the src set
+  // If we're not in either letter or special, then change nothing
+  if (srcLoc.first == Keyboard_Youtube::ButtonSet::letter)
+  {
+    this->m_letterNotSpecial = true;
+  }
+  else if (srcLoc.first == Keyboard_Youtube::ButtonSet::special)
+  {
+    this->m_letterNotSpecial = false;
+  }
+
+  printf("src:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",srcLoc.first,srcLoc.second.val.c_str(),srcLoc.second.x,srcLoc.second.y);
+  printf("dst:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",dstLoc.first,dstLoc.second.val.c_str(),dstLoc.second.x,dstLoc.second.y);
+  printf("m_letterNotSpecial: %u\n", this->m_letterNotSpecial);
 
   // If we have to go from a Letter to a Side
   // Note: We always go to the letter2special key for ease/consistency.
@@ -76,6 +88,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // If we have special pulled up
     if (!(this->m_letterNotSpecial))
     {
+      printf("E 0\n");
       tempVec.push_back('e');
       this->m_letterNotSpecial = true;
     }
@@ -118,6 +131,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // If we have letter pulled up
     if (this->m_letterNotSpecial)
     {
+      printf("E 1\n");
       tempVec.push_back('e');
       this->m_letterNotSpecial = false;
     }
@@ -143,6 +157,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // Get path from src to Side
     tempVec = this->GetPath(src,"letter2special");
     // Swap to the other one
+    printf("E 2\n");
     tempVec.push_back('e');
     // Record that we changed between letter and special
     this->m_letterNotSpecial = !(this->m_letterNotSpecial);
@@ -215,6 +230,41 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // Get remaining path
     tempVec = this->GetPath(tempKey.val,dst);
     outVec.insert(outVec.end(),tempVec.begin(),tempVec.end());
+    return outVec;
+  }
+
+  // If we need to go from side to bottom or bottom to side
+  if ((   srcLoc.first == Keyboard_Youtube::ButtonSet::bottom
+       && dstLoc.first == Keyboard_Youtube::ButtonSet::side)
+      ||
+      (   srcLoc.first == Keyboard_Youtube::ButtonSet::side
+       && dstLoc.first == Keyboard_Youtube::ButtonSet::bottom))
+  {
+    // If letter is pulled up
+    if (this->m_letterNotSpecial)
+    {
+      // Just get path from src to just left of letter2special
+      Keyboard::Key tempKey = this->GetKeyAtXY(Keyboard_Youtube::ButtonSet::letter,
+                                               0,
+                                               this->m_letterDimXY.second-1);
+      tempVec = this->GetPath(src,tempKey.val);
+      outVec.insert(outVec.end(),tempVec.begin(),tempVec.end());
+      // And add the path from there to dst
+      tempVec = this->GetPath(tempKey.val,dst);
+      outVec.insert(outVec.end(),tempVec.begin(),tempVec.end());
+    }
+    else
+    {
+      // Just get path from src to just left of letter2special
+      Keyboard::Key tempKey = this->GetKeyAtXY(Keyboard_Youtube::ButtonSet::special,
+                                               0,
+                                               this->m_specialDimXY.second-1);
+      tempVec = this->GetPath(src,tempKey.val);
+      outVec.insert(outVec.end(),tempVec.begin(),tempVec.end());
+      // And add the path from there to dst
+      tempVec = this->GetPath(tempKey.val,dst);
+      outVec.insert(outVec.end(),tempVec.begin(),tempVec.end());     
+    }
     return outVec;
   }
 

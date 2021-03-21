@@ -20,16 +20,19 @@ int main(int argc, char** argv)
   std::cout << "DeviceStatus(/dev/lirc1)" << ir_controller::DeviceStatus(std::string("/dev/lirc1")) << std::endl;
   std::cout << "DeviceStatus(/dev/notadevice)" << ir_controller::DeviceStatus(std::string("/dev/notadevice")) << std::endl;
 */
-  ir_controller::Keyboard_Youtube ky;
+  ir_controller::Keyboard_Youtube ky = ir_controller::Keyboard_Youtube();
 
-  std::vector<char> pathVec = ky.GetPath("search","7");
-
-  std::cout << "Path:" << std::endl;
-  for (auto it = pathVec.begin();
-       it != pathVec.end();
-       ++it)
+  if (argc == 3)
   {
-    std::cout << *it << std::endl;
+    std::vector<char> pathVec = ky.GetPath(std::string(argv[1]),std::string(argv[2]));
+
+    std::cout << "Path:" << std::endl;
+    for (auto it = pathVec.begin();
+         it != pathVec.end();
+         ++it)
+    {
+      std::cout << *it << std::endl;
+    }
   }
 
   return 0;
