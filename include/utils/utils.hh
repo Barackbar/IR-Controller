@@ -21,6 +21,12 @@ void UtilTest();
  */
 int DeviceStatus(std::string dev);
 
+/* Send IR
+ * Sends the contents of the provided file through
+ * the provided IR sending device.
+ */
+int SendIR(std::string dev, std::string filename);
+
 } // namespace ir_controller
 
 #endif

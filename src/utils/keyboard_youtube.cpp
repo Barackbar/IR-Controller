@@ -56,9 +56,9 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     this->m_letterNotSpecial = false;
   }
 
-  printf("src:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",srcLoc.first,srcLoc.second.val.c_str(),srcLoc.second.x,srcLoc.second.y);
-  printf("dst:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",dstLoc.first,dstLoc.second.val.c_str(),dstLoc.second.x,dstLoc.second.y);
-  printf("m_letterNotSpecial: %u\n", this->m_letterNotSpecial);
+//  printf("src:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",srcLoc.first,srcLoc.second.val.c_str(),srcLoc.second.x,srcLoc.second.y);
+//  printf("dst:\n  Set: %u\n  Key: %s\n  Loc: %u,%u\n",dstLoc.first,dstLoc.second.val.c_str(),dstLoc.second.x,dstLoc.second.y);
+//  printf("m_letterNotSpecial: %u\n", this->m_letterNotSpecial);
 
   // If we have to go from a Letter to a Side
   // Note: We always go to the letter2special key for ease/consistency.
@@ -88,7 +88,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // If we have special pulled up
     if (!(this->m_letterNotSpecial))
     {
-      printf("E 0\n");
+      //printf("E 0\n");
       tempVec.push_back('e');
       this->m_letterNotSpecial = true;
     }
@@ -131,7 +131,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // If we have letter pulled up
     if (this->m_letterNotSpecial)
     {
-      printf("E 1\n");
+      //printf("E 1\n");
       tempVec.push_back('e');
       this->m_letterNotSpecial = false;
     }
@@ -157,7 +157,7 @@ std::vector<char> Keyboard_Youtube::GetPath(std::string src, std::string dst)
     // Get path from src to Side
     tempVec = this->GetPath(src,"letter2special");
     // Swap to the other one
-    printf("E 2\n");
+    //printf("E 2\n");
     tempVec.push_back('e');
     // Record that we changed between letter and special
     this->m_letterNotSpecial = !(this->m_letterNotSpecial);

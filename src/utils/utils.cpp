@@ -18,9 +18,8 @@ int ir_controller::DeviceStatus(std::string dev)
   char buf[bufSize];
   std::string result = "";
 
-  std::string command = "ir-ctl -d ";
+  std::string command = "ir-ctl -f -d ";
   command.append(dev);
-  command.append(" -f");
 
   // Open a pipe to the command's process.
   FILE* pipe = popen(command.c_str(), "r");
@@ -58,4 +57,14 @@ int ir_controller::DeviceStatus(std::string dev)
   {
     return 0;
   }
+}
+
+int ir_controller::SendIR(std::string dev, std::string filename)
+{
+  // The ir-ctl command
+  std::string irCtlCmd = std::string("ir-ctl -d ")
+                       + dev
+                       + std::string(" --send=")
+                       + filename;
+  std::system(irCtlCmd.c_str());
 }
