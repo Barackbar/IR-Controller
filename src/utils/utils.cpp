@@ -67,4 +67,6 @@ int ir_controller::SendIR(std::string dev, std::string filename)
                        + std::string(" --send=")
                        + filename;
   std::system(irCtlCmd.c_str());
+
+  return 0;
 }
