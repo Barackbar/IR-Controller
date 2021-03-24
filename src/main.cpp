@@ -120,7 +120,7 @@ int main(int argc, char** argv)
       case 8:
       case 9:
         std::cout << "SendIR(" << dev << "," << filenames[in-1] << ");" << std::endl;
-//        ir_controller::SendIR(dev,filenames[in-1]);
+        ir_controller::SendIR(dev,filenames[in-1]);
         break;
       case 10:
         // Get the user input text with spaces intact
@@ -179,30 +179,30 @@ int main(int argc, char** argv)
             {
               case 'u':
                 std::cout << "u" << std::endl;
-//                ir_controller::SendIR(dev,filenames[1]);
+                ir_controller::SendIR(dev,filenames[1]);
                 break;
               case 'd':
                 std::cout << "d" << std::endl;
-//                ir_controller::SendIR(dev,filenames[2]);
+                ir_controller::SendIR(dev,filenames[2]);
                 break;
               case 'l':
                 std::cout << "l" << std::endl;
-//                ir_controller::SendIR(dev,filenames[3]);
+                ir_controller::SendIR(dev,filenames[3]);
                 break;
               case 'r':
                 std::cout << "r" << std::endl;
-//                ir_controller::SendIR(dev,filenames[4]);
+                ir_controller::SendIR(dev,filenames[4]);
                 break;
               case 'e':
                 std::cout << "e" << std::endl;
-//                ir_controller::SendIR(dev,filenames[5]);
+                ir_controller::SendIR(dev,filenames[5]);
                 break;
             }
             sleep(waitSec);
           }
           // At the end, send an 'e' to hit the character button
           std::cout << "e" << std::endl;
-//          ir_controller::SendIR(dev,filenames[5]);
+          ir_controller::SendIR(dev,filenames[5]);
           sleep(waitSec);
         }
         break;
